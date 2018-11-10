@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Global.gd" type="Script" id=1]
 [ext_resource path="res://Map/Assets/BackgroundTile1.tres" type="TileSet" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://Map/Assets/AssetTile1.tres" type="TileSet" id=7]
 [ext_resource path="res://Items/key.tscn" type="PackedScene" id=8]
 [ext_resource path="res://GameInterface/Interface.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Character/attack.tscn" type="PackedScene" id=10]
+[ext_resource path="res://GameInterface/OxygenBar.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Character/attack.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -287,25 +288,43 @@ position = Vector2( 366.521, 540.378 )
 
 [node name="Interface" parent="." index="3" instance=ExtResource( 9 )]
 
-editor/display_folded = true
 margin_left = 39.0
 margin_top = 7.0
 margin_right = 39.0
 margin_bottom = -57.0
 
+[node name="LifeBar" parent="Interface/Bars" index="0"]
+
+editor/display_folded = true
+
 [node name="Label" parent="Interface/Bars/LifeBar/counter/Icon" index="0"]
+
+visible = false
+
+[node name="OxygenBar" parent="Interface/Bars" index="1"]
+
+editor/display_folded = true
+script = ExtResource( 10 )
+
+[node name="Label" parent="Interface/Bars/OxygenBar/counter/Icon" index="0"]
 
 visible = false
 
 [node name="player" parent="." index="4" groups=[
 "actors",
-] instance=ExtResource( 10 )]
+] instance=ExtResource( 11 )]
 
 position = Vector2( 129.642, 100.235 )
 
+[connection signal="oxygen_changed" from="Interface" to="Interface/Bars/OxygenBar" method="_on_Interface_oxygen_changed"]
+
 [connection signal="health_changed" from="player/Health" to="Interface" method="_on_Health_health_changed"]
+
+[connection signal="oxygen_changed" from="player/Oxygen" to="Interface" method="_on_Oxygen_oxygen_changed"]
 
 
 [editable path="Interface"]
 [editable path="Interface/Bars/LifeBar"]
+[editable path="Interface/Bars/OxygenBar"]
 [editable path="player"]
+[editable path="player/Health"]

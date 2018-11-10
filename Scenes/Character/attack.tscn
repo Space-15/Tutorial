@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Sprites/Spaceman Sprite/attack.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Character/Health.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Oxygen.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 
@@ -294,4 +295,8 @@ shape = SubResource( 13 )
 
 [node name="Health" parent="." index="3" instance=ExtResource( 3 )]
 
+[node name="Oxygen" parent="." index="4" instance=ExtResource( 4 )]
 
+
+[editable path="Health"]
+[editable path="Oxygen"]

@@ -4,6 +4,7 @@ const SPEED = 250
 const TYPE = "PLAYER"
 
 onready var health = $Health
+onready var oxygen = $Oxygen
 
 var keys = 0
 var idle = true
@@ -14,15 +15,20 @@ func _ready():
 func get_health_node():
 	return $Health	
 	
+func get_oxygen_node():
+	return $Oxygen
+	
 func take_damage(damage):
 	health.take_damage(damage)
-
+	
+func lose_oxygen(oxygen):
+	oxygen.lose_oxygen(oxygen)
+	
 func _physics_process(delta):
 	controls_loop()
 	movement_loop()
 	spritedir_loop()
 	#damage_loop()
-	
 	keys = min(keys, 9)
 	
 	if movedir != dir.center:
