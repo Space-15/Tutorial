@@ -21,14 +21,15 @@ func get_oxygen_node():
 func take_damage(damage):
 	health.take_damage(damage)
 	
-func lose_oxygen(oxygen):
-	oxygen.lose_oxygen(oxygen)
+func lose_oxygen(lost):
+	oxygen.lose_oxygen(lost)
 	
 func _physics_process(delta):
 	controls_loop()
 	movement_loop()
 	spritedir_loop()
 	#damage_loop()
+	lose_oxygen(1)
 	keys = min(keys, 9)
 	
 	if movedir != dir.center:
