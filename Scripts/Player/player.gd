@@ -29,7 +29,6 @@ func _physics_process(delta):
 	movement_loop()
 	spritedir_loop()
 	#damage_loop()
-	lose_oxygen(1)
 	keys = min(keys, 9)
 	
 	if movedir != dir.center:
